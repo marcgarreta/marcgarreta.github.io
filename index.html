@@ -1,26 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marc Garreta Portfolio</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marc Garreta Basora</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.cdnfonts.com/css/optima" rel="stylesheet">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <style>
+    /* --- FONTS & GENERAL STYLES --- */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      color: #333;
+      background-color: #f7f7f7;
+      margin: 0;
+    }
+    a {
+      color: #1772d0;
+      text-decoration: none;
+      border-left: none !important;
+    }
+    a:focus, a:active, a:visited {
+      border-left: none !important;
+      outline: none;
+    }
+    a:hover {
+      color: #1772d0;
+      border-left: none !important;
+    }
+    p {
+      line-height: 1.7;
+      margin-bottom: 0.75em;
+    }
+
+    /* --- NAVIGATION BAR --- */
+    .navbar {
+      background: #ffffff;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1rem;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 20px;
+    }
+    .nav-logo {
+      color: #111;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      font-family: 'Optima', sans-serif;
+      font-weight: bold;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-item {
+      height: 70px;
+    }
+    .nav-link {
+      color: #333;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      padding: 0 1rem;
+      height: 100%;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #1e5fa1;
+      border-bottom-color: #1e5fa1;
+    }
+    .nav-link.active {
+      font-weight: bold;
+    }
+    .desktop-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      width: 100%;
+    }
+    .mobile-nav {
+      display: none;
+      position: relative;
+    }
+    .menu-toggle-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: #333;
+      padding: 5px;
+    }
+    .apple-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      right: 0;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    .apple-menu::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid rgba(255, 255, 255, 0.92);
+    }
+    .apple-menu.active { display: block; }
+    .apple-menu ul { list-style: none; margin: 5px; padding: 0; }
+    .apple-menu li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      font-size: 1rem;
+      color: #111;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+    .apple-menu li a:hover { background-color: rgba(0, 0, 0, 0.05); }
+    .apple-menu li a .fa { color: #555; }
+
+    /* --- LAYOUT --- */
+    main.page-container {
+      max-width: 80%;
+      margin: 40px auto;
+      padding: 50px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 8px;
+    }
+    .content-section {
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 1px solid #eee;
+    }
+    .section-heading {
+      font-family: 'Optima', sans-serif;
+      font-size: 26px;
+      font-weight: bold;
+      color: #111;
+      margin-bottom: 25px;
+      border-left: none !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      border-left: none !important;
+    }
+
+    /* --- PROFILE SECTION --- */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 70% 30%;
+      gap: 30px;
+      align-items: center;
+    }
+    .profile__name {
+      font-family: 'Optima', sans-serif;
+      font-size: 36px;
+      margin-bottom: 0.5em;
+      color: #111;
+    }
+    .profile__photo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .profile__photo {
+      width: 160px;
+      height: 210px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .profile__photo-placeholder {
+      width: 160px;
+      height: 210px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #e8f0fe 0%, #c5d9f8 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #5a7fc0;
+      font-size: 14px;
+      text-align: center;
+      border: 2px dashed #b0c8f0;
+    }
+    .profile__photo-placeholder i {
+      font-size: 48px;
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
+    .profile__links {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .profile__links a {
+      color: #555;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .profile__links a:hover { color: #1772d0; }
+
+    /* --- PROJECT STYLES --- */
+    #projects .project-grid {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      gap: 40px;
+      align-items: flex-start;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    #projects .project-grid:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .project__image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #dce8fb 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #7a9fd4;
+      font-size: 13px;
+      gap: 8px;
+      border: 1px solid #d0e2f7;
+    }
+    .project__image-placeholder i { font-size: 32px; opacity: 0.7; }
+    .project__title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 6px;
+    }
+    .project__title-link { color: #1772d0; }
+    .project__title-link:hover .project__title { color: #818181; }
+    .project__authors { margin: 5px 0; font-size: 15px; }
+    .project__conference {
+      margin: 8px 0;
+      font-style: italic;
+      font-size: 15px;
+    }
+    .project__conference--highlight {
+      color: #c0392b;
+      font-weight: bold;
+    }
+    .project__links {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .project__links__mobile {
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    /* --- EXPERIENCE / EDUCATION --- */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 25px;
+      align-items: center;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .experience-grid:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .logo-badge {
+      width: 120px;
+      height: 70px;
+      border-radius: 8px;
+      background: #f5f7fa;
+      border: 1px solid #e0e6ef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Optima', sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      color: #4a6a9c;
+      text-align: center;
+      padding: 8px;
+      line-height: 1.3;
+    }
+    .experience__logo img {
+      max-width: 100%;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      display: block;
+    }
+    .experience__info p { margin-bottom: 4px; line-height: 1.5; }
+    .experience__date { color: #666; font-size: 0.95em; }
+
+    /* --- FOOTER --- */
+    footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #eee;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
+    footer p { margin-bottom: 4px; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 992px) {
+      main.page-container {
+        max-width: 95%;
+        padding: 24px 18px;
+        margin: 16px auto;
+      }
+      .navbar { position: static; }
+      .nav-menu { display: none; }
+      .mobile-nav { display: block; }
+      .profile-grid,
+      #projects .project-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .profile__photo-container,
+      .profile__photo-placeholder {
+        margin: 0 auto 20px;
+      }
+      .profile__links { justify-content: center; }
+      .experience-grid {
+        grid-template-columns: 80px 1fr;
+        gap: 15px;
+      }
+      .logo-badge {
+        width: 70px;
+        height: 55px;
+        font-size: 11px;
+      }
+      .project__links { display: none; }
+      .project__links__mobile { display: flex; }
+      .project__image-placeholder { aspect-ratio: 16/9; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Marc Garreta</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-        </nav>
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="desktop-nav">
+        <ul class="nav-menu">
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+
+    <!-- Profile Section -->
+    <header class="profile-grid" id="about">
+      <div class="profile__info">
+        <h1 class="profile__name">Marc Garreta Basora</h1>
+        <p>I am currently enhancing my expertise in Artificial Intelligence through a MSc in Data Science and my current project work at IIIA-CSIC. I am particularly interested in how technology can create a positive impact across industries.</p>
+        <p>I am committed to continuous learning and growth, and I am always looking for opportunities to expand my knowledge, take on new challenges, and contribute to meaningful projects.</p>
+        <p class="profile__links">
+          <a href="mailto:marcgarreta@gmail.com"><i class="fa fa-paper-plane" aria-hidden="true"></i> Email</a>
+          <a href="https://github.com/marcgarreta" target="_blank" rel="noopener"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
+          <a href="https://www.linkedin.com/in/marcgarretabasora" target="_blank" rel="noopener"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+        </p>
+      </div>
+      <div class="profile__photo-container">
+        <img class="profile__photo" alt="Marc Garreta Basora" src="img/picture/picture-myself.png">
+      </div>
     </header>
-    <main>
-        <h2>Welcome to my portfolio</h2>
-        <p>This is where I showcase my work.</p>
-    </main>
+
+    <!-- Projects Section -->
+    <section class="content-section" id="projects">
+      <h2 class="section-heading">Projects</h2>
+
+      <article class="project-grid">
+        <div class="project__image">
+          <img src="img/projects/ECG-project.png" alt="ECG Anomaly Detection" style="width:100%;border-radius:8px;object-fit:cover;">
+        </div>
+        <div class="project__info">
+          <a href="https://arxiv.org/pdf/2510.05919" target="_blank" rel="noopener" class="project__title-link">
+            <p class="project__title">An Attention-Augmented VAE-BiLSTM Framework for Anomaly Detection in 12-Lead ECG Signals <sup>🔗</sup></p>
+          </a>
+          <p class="project__authors"><strong>Marc Garreta Basora</strong>, Mehmet Oguz Mulayim</p>
+          <p class="project__conference project__conference--highlight">Pre-print</p>
+          <div class="project__links">
+            <a href="https://arxiv.org/pdf/2510.05919" target="_blank" rel="noopener" class="button is-normal is-rounded is-small" style="background-color:#b71c1c;color:#fff;border-color:#b71c1c;"><i class="ai ai-arxiv"></i>&nbsp;ArXiv</a>
+            <a href="https://github.com/marcgarreta/12-lead-ECG-AD" target="_blank" rel="noopener" class="button is-normal is-rounded is-dark is-small"><i class="fa fa-github"></i>&nbsp;Code</a>
+          </div>
+          <div class="project__links__mobile">
+            <a href="https://arxiv.org/pdf/2510.05919" target="_blank" rel="noopener" class="button is-small is-rounded" style="background-color:#b71c1c;color:#fff;border-color:#b71c1c;"><i class="ai ai-arxiv"></i>&nbsp;ArXiv</a>
+            <a href="https://github.com/marcgarreta/12-lead-ECG-AD" target="_blank" rel="noopener" class="button is-small is-rounded is-dark"><i class="fa fa-github"></i>&nbsp;Code</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="content-section" id="experience">
+      <h2 class="section-heading">Experience</h2>
+
+      <article class="experience-grid">
+        <div class="experience__logo">
+          <img src="img/logo/logo-iiia.png" alt="IIIA-CSIC Logo">
+        </div>
+        <div class="experience__info">
+          <p><strong>AI Researcher at IIIA-CSIC</strong></p>
+          <p>Barcelona, Spain</p>
+          <p class="experience__date">February 2026 – Present</p>
+        </div>
+      </article>
+
+      <article class="experience-grid">
+        <div class="experience__logo">
+          <img src="img/logo/logo-bs-zurich.jpg" alt="Zurich Banc Sabadell Logo" style="transform:scale(0.8);transform-origin:left center;">
+        </div>
+        <div class="experience__info">
+          <p><strong>Data Governance Intern at Zurich Banc Sabadell Joint Venture</strong></p>
+          <p>Barcelona, Spain</p>
+          <p class="experience__date">September 2024 – April 2025</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Education Section -->
+    <section class="content-section" id="education">
+      <h2 class="section-heading">Education</h2>
+
+      <article class="experience-grid">
+        <div class="experience__logo">
+          <img src="img/logo/logo-uoc.png" alt="UOC Logo">
+        </div>
+        <div class="experience__info">
+          <p><strong>MSc in Data Science</strong></p>
+          <p>Universitat Oberta de Catalunya</p>
+          <p class="experience__date">February 2026 – February 2027</p>
+        </div>
+      </article>
+
+      <article class="experience-grid">
+        <div class="experience__logo">
+          <img src="img/logo/logo-uab.png" alt="UAB Logo">
+        </div>
+        <div class="experience__info">
+          <p><strong>BSc in Artificial Intelligence</strong></p>
+          <p>Autonomous University of Barcelona</p>
+          <p class="experience__date">September 2021 – June 2025</p>
+        </div>
+      </article>
+    </section>
+
     <footer>
-        <p>&copy; 2026 Marc Garreta</p>
+      <p>© 2026 Marc Garreta Basora. All rights reserved.</p>
     </footer>
+
+  </main>
+
+  <script>
+    const menuTrigger = document.querySelector('#mobile-menu-trigger');
+    const menuDropdown = document.querySelector('#apple-menu-dropdown');
+
+    menuTrigger.addEventListener('click', function(event) {
+      event.stopPropagation();
+      menuDropdown.classList.toggle('active');
+    });
+
+    window.addEventListener('click', function() {
+      if (menuDropdown.classList.contains('active')) {
+        menuDropdown.classList.remove('active');
+      }
+    });
+  </script>
+
 </body>
 </html>
